@@ -1,0 +1,47 @@
+Following Steps :
+
+1. Create Simple Phonegap Project in Project Desktop.
+2. Open index.html
+3. Add jquery.min.js file.
+    Example : <script src="js/jquery.min.js"></script>
+4. Add Cordova.js file.
+    Example : <script type="text/javascript" src="cordova.js"></script> 
+5. Create Function For Read JSON data When click on button
+    Example : 
+      function onGetJSONData(){		
+				$.ajax({
+					type: "POST",
+					url: "YOUR JSON URL",
+					crossDomain: true,
+					dataType: "json",
+					success: function(data){
+						document.getElementById("getKeyValue").innerHTML = JSON.parse(JSON.stringify(data.key));
+            //Set KEY Value in ID (getKeyValue)
+					},
+				error : function(e){		
+		      	//		alert('Check your Internet connection  OR Wrong your JSON URL');
+				}
+			});
+		}
+6.  Create Function For Send String using POST method When click on button
+      function sendString(){
+        $.ajax({
+            type: "POST",
+            url: "URL",
+            data:"Send Data into URL",
+            success: function(data){					
+              document.getElementById("setKeyValue").innerHTML = data;						
+            },
+            error: function(e){
+              alert('Check your Internet connection  OR Wrong your JSON URL');
+             }
+        });
+      }	
+7. HTML codes
+      //Get Value Button and set value
+      <input type="Button" value="Get Data"  onClick="onGetJSONData();" name="" />
+      <div id="getKeyValue"></div>
+      
+      //Send Value Button  and set value
+      <input type="Button" value="Send Data"  onClick="sendString();" name="" />
+      <div id="setKeyValue"></div>
